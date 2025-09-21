@@ -1,4 +1,3 @@
-[infonaiii.html](https://github.com/user-attachments/files/22450613/infonaiii.html)
 <!DOCTYPE html>
 <html lang="ru">
 <head>
