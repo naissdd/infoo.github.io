@@ -177,7 +177,7 @@
         }
         
         li::before {
-            content: '♥️';
+            content: '♥';
             color: var(--neon-pink);
             position: absolute;
             left: 0;
@@ -244,33 +244,7 @@
         .blue { color: #4f69ff; }
         .green { color: #00c897; }
         
-        .telegram-only-message {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 200, 220, 0.95);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .telegram-only-message h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #d43f78;
-        }
-        
-        .telegram-only-message p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-@media (max-width: 600px) {
+        @media (max-width: 600px) {
             .container { padding: 20px; }
             h1 { font-size: 2.2rem; }
             h2 { font-size: 1.5rem; }
@@ -278,12 +252,6 @@
     </style>
 </head>
 <body>
-    <div class="telegram-only-message" id="telegramOnlyMessage">
-        <h2>✨ Только для Telegram ✨</h2>
-        <p>Эта визитка доступна только внутри Telegram как Mini App.</p>
-        <p>Откройте ее через бота в Telegram.</p>
-    </div>
-    
     <div class="light-bulbs" id="lightBulbs"></div>
     
     <div class="neon-accent neon-pink" style="top: -100px; left: -100px;"></div>
@@ -294,8 +262,7 @@
         <h1>◇ naii ✧ ない ◇</h1>
         
         <div class="section" style="animation-duration: 7s;">
-            <h2>✦ Основное ✦</h2>
-            <p><span class="blinking-text">Псевдоним:</span> <span class="pink">naii</span></p>
+            <h2>✦ Основное ✦</h2><p><span class="blinking-text">Псевдоним:</span> <span class="pink">naii</span></p>
             <p><span class="blinking-text">ЗЗ:</span> Козерог 19.01</p>
             <p><span class="blinking-text">Возраст:</span> Скрыт</p>
             <p><span class="blinking-text">Статус:</span> Свободна</p>
@@ -357,11 +324,11 @@
                 <span class="badge">Чудовище за последней партой</span>
                 <span class="badge">Сад изящных слов</span>
                 <span class="badge">Ангел кровопролития</span>
-<span class="badge">Повар-боец</span>
+                <span class="badge">Повар-боец</span>
                 <span class="badge">Ребёнок идола</span>
                 <span class="badge">Агент времени</span>
                 <span class="badge">Очень приятно Бог</span>
-                <span class="badge">Госпожа Кагуya</span>
+                <span class="badge">Госпожа Кагуя</span>
                 <span class="badge">Банановая рыба</span>
                 <span class="badge">Кланнад</span>
                 <span class="badge">Монолог фармацевта</span>
@@ -372,8 +339,7 @@
                 <span class="badge">Пять невест</span>
                 <span class="badge">Двуличная сестрёнка Умару</span>
                 <span class="badge">Связь сердец</span>
-                <span class="badge">Чудачества любви не помеха</span>
-                <span class="badge">Нана</span>
+                <span class="badge">Чудачества любви не помеха</span><span class="badge">Нана</span>
                 <span class="badge">У Коми проблемы с общением</span>
                 <span class="badge">Дотянуться до тебя</span>
                 <span class="badge">Как воспитать героиню из девушки</span>
@@ -442,19 +408,6 @@
     </div>
 
     <script>
-// Проверка, открыто ли в Telegram WebApp
-        function isTelegramWebApp() {
-            return typeof Telegram !== 'undefined' && Telegram.WebApp && Telegram.WebApp.initData;
-        }
-        
-        // Показ сообщения, если открыто не в Telegram
-        function checkTelegramEnvironment() {
-            if (!isTelegramWebApp()) {
-                document.getElementById('telegramOnlyMessage').style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
-        }
-        
         // Создание плавающих лампочек
         function createLightBulbs() {
             const container = document.getElementById('lightBulbs');
@@ -477,8 +430,7 @@
                 bulb.style.animationDelay = `${delay}s`;
                 
                 const colors = [
-                    'rgba(255, 158, 203, 0.8)',
-                    'rgba(181, 123, 255, 0.8)',
+                    'rgba(255, 158, 203, 0.8)','rgba(181, 123, 255, 0.8)',
                     'rgba(131, 227, 255, 0.8)',
                     'rgba(255, 214, 79, 0.8)'
                 ];
@@ -540,28 +492,15 @@
         }
         
         // Инициализация при загрузке
-        document.
-addEventListener('DOMContentLoaded', function() {
-            checkTelegramEnvironment();
-            
-            // Если не в Telegram, не инициализируем контент
-            if (!isTelegramWebApp()) return;
-            
+        document.addEventListener('DOMContentLoaded', function() {
             createLightBulbs();
             createSakuraPetals();
             addRandomBlinks();
             
             // Адаптация под тему Telegram
             if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
-                Telegram.WebApp.ready();
-                Telegram.WebApp.expand();
-                
                 document.body.style.backgroundColor = Telegram.WebApp.backgroundColor;
                 document.body.style.color = Telegram.WebApp.textColor;
-                
-                // Установка цвета кнопки в тему
-                Telegram.WebApp.setHeaderColor('#ff9ecb');
-                Telegram.WebApp.setBackgroundColor('#ffcfe4');
             }
         });
     </script>
